@@ -8,15 +8,6 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   server: { proxy: { '/api': 'http://localhost:8081' } },
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (/node_modules[\/](three|@react-three)/.test(id)) return 'three'
-          if (/node_modules[\/](recharts|d3-)/.test(id)) return 'charts'
-        },
-      },
-    },
-  },
+  build: { chunkSizeWarningLimit: 1000 },
   test: { environment: 'jsdom', globals: true },
 })
