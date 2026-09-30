@@ -67,7 +67,7 @@ const router = createBrowserRouter(
         { path: '/', element: <Landing /> },
         {
           element: <GuestOnly />,
-          children: [{ element: <AuthLayout />, children: ['login', 'register', 'verify'].map((p) => ({ path: p })) }],
+          children: [{ element: <AuthLayout />, children: ['login', 'register', 'verify'].map((p) => ({ path: p, element: null })) }],
         },
         {
           element: <RequireAuth />,
