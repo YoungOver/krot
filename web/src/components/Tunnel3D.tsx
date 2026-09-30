@@ -1,25 +1,10 @@
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useMemo, useRef } from 'react'
 import * as THREE from 'three'
-import { create } from 'zustand'
+import { useTunnel } from './tunnelStore'
 
 // Mine shaft: timber frames rush toward the camera; a request fired from the
 // terminal travels through the shaft as a glowing packet.
-
-type TunnelStore = { packets: { id: number; born: number; lane: number }[]; fire: (n?: number) => void; speed: number; setSpeed: (v: number) => void }
-let pid = 0
-export const useTunnel = create<TunnelStore>((set) => ({
-  packets: [],
-  speed: 1,
-  setSpeed: (speed) => set({ speed }),
-  fire: (n = 1) =>
-    set((s) => ({
-      packets: [
-        ...s.packets.filter((p) => performance.now() - p.born < 2200),
-        ...Array.from({ length: n }, (_, i) => ({ id: ++pid, born: performance.now() + i * 140, lane: Math.random() * Math.PI * 2 })),
-      ],
-    })),
-}))
 
 const FRAMES = 44
 const GAP = 3.2
