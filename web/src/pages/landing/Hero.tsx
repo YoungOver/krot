@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router'
 import { Button } from '@/components/ui/kit'
-import { useTunnel } from '@/components/Tunnel3D'
+import { useTunnel } from '@/components/tunnelStore'
 
 const Tunnel3D = lazy(() => import('@/components/Tunnel3D'))
 
